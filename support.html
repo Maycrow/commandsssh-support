@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="referrer" content="no-referrer">
+  <meta name="description" content="命令与服务器的支持邮箱、问题反馈方式及计划首发 App 的功能边界。">
+  <title>技术支持｜命令与服务器</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip-link" href="#main">跳到正文</a>
+<header class="site-header">
+  <div class="header-inner">
+    <div class="brand"><span class="brand-mark" aria-hidden="true">&gt;_</span><span>命令与服务器</span></div>
+    <nav class="site-nav" aria-label="网站导航">
+      <a href="index.html">隐私政策</a>
+      <a href="support.html" aria-current="page">技术支持</a>
+    </nav>
+  </div>
+</header>
+<main class="page" id="main" tabindex="-1">
+  <p class="draft-label">使用帮助 · 预发布说明</p>
+  <h1>技术支持</h1>
+  <p class="intro">命令勘误、使用问题与隐私请求，请通过公开支持邮箱联系。发送前请先检查并移除敏感资料。</p>
+  <div class="notice" role="note" aria-label="功能适用范围">
+    <p><strong>App 尚未正式发布</strong></p>
+    <p>本页的 App 功能说明适用于计划中的首个正式发布版，首发暂不提供 iCloud 同步；实际发布构建仍须核对。网站与支持邮件规则自网页公开起适用，不替代既有测试版本的数据说明，也不改变其开关或资料。</p>
+  </div>
+  <div class="document-layout">
+    <aside class="contents" aria-labelledby="contents-title">
+      <h2 id="contents-title">本页目录</h2>
+      <ul>
+        <li><a href="#contact">联系与版本信息</a></li>
+        <li><a href="#features">核心用途</a></li>
+        <li><a href="#feedback">如何反馈问题</a></li>
+        <li><a href="#faq">常见问题</a></li>
+        <li><a href="#privacy">隐私说明</a></li>
+      </ul>
+    </aside>
+    <article class="document" aria-label="技术支持正文">
+      <section aria-labelledby="contact">
+        <h2 id="contact">联系与版本信息</h2>
+        <dl class="metadata">
+          <div><dt>发布者公开名称</dt><dd>zhanyi</dd></div>
+          <div><dt>公开支持邮箱</dt><dd><a class="contact-link" href="mailto:18809970825@163.com">18809970825@163.com</a></dd></div>
+          <div><dt>整理日期</dt><dd>2026-10-18</dd></div>
+        </dl>
+        <p class="fine-print">邮箱链接仅在你点击后调用自己的邮件应用；本网页不提供自动上传或反馈表单。</p>
+      </section>
+      <section aria-labelledby="features">
+        <h2 id="features">核心用途</h2>
+        <p>计划首发可先按场景找到 Linux 命令和操作参考，再按需使用 SSH 连接你有权管理的服务器。内置手册可离线阅读，支持全库搜索、收藏和最近阅读。</p>
+        <p>SSH 提供密码或私钥认证、主机指纹核对、状态查看和单次远程命令。当前不提供完整交互式终端或 SFTP 文件管理。</p>
+      </section>
+      <section aria-labelledby="feedback">
+        <h2 id="feedback">如何反馈问题</h2>
+        <p>请提供 App 的版本号和构建号、iOS 版本、设备型号、发生问题的界面、复现步骤、预期与实际结果，以及可选的脱敏截图。版本信息可在 App“关于”查看。</p>
+        <p>请勿发送密码、私钥、私钥口令、令牌、完整服务器清单、真实内部地址或未经授权的日志。无需向开发者提供 Apple 密码或 SSH 登录凭据。无法安全脱敏时，只描述现象。</p>
+        <p>支持邮件用于问题、内容勘误及隐私请求，仅由发布者本人查看。问题处理结束后保留 30 天，再由本人手动清理可控制的邮件、附件及副本，不承诺固定答复时限。需要查询、更正或提前删除收到的资料时，请尽量通过原发件邮箱发送“隐私请求”，按原有通信核验后处理；无需提交密码、私钥或身份证件。邮箱服务商及备份副本的处理边界见<a href="index.html#email">隐私政策</a>。</p>
+      </section>
+      <section aria-labelledby="faq">
+        <h2 id="faq">常见问题</h2>
+        <h3>为什么手册命令在我的服务器上不同？</h3>
+        <p>命令行为可能因发行版、版本、权限、Shell 或软件实现而异。先阅读适用范围和风险提示，再核对目标系统的官方手册；不要直接在生产服务器试验破坏性命令。</p>
+        <h3>为什么首次连接要确认指纹？</h3>
+        <p>请通过可信渠道核对服务器主机指纹。出现已保存指纹变化时应先查明原因，不应为绕过提示而盲目信任新指纹。不要把服务器密码发到支持邮箱。</p>
+        <h3>停止等待后，远端命令是否一定终止？</h3>
+        <p>不是。停止本机等待不保证远端进程已终止，请通过你有权使用的独立管理渠道确认远端状态，避免重复执行造成副作用。</p>
+        <h3>如何管理记录？</h3>
+        <p>可取消收藏、清空命令最近阅读和专题阅读位置、清空服务器命令历史，或删除服务器。删除会尝试清理对应钥匙串凭据，失败时提示。卸载不保证清除钥匙串、备份、远端日志或已分享副本；支持邮箱不能远程删除本机资料。</p>
+        <h3>是否支持 iCloud？</h3>
+        <p>计划首发暂不提供，待验证后再评估。既有测试版本仍可能包含同步功能；本页不会改变任何开关或删除资料。测试用户不要把首发计划当作云端资料已被清除的通知。</p>
+        <h3>发现内容来源或版权问题怎么办？</h3>
+        <p>请发送条目名称、具体段落及可核查的来源或权利说明；不要求发送无权公开的全文。开发者仍须完成内容来源与再分发范围核实，此联系方式不代表目前已取得全部授权。</p>
+      </section>
+      <section aria-labelledby="privacy">
+        <h2 id="privacy">隐私说明</h2>
+        <p>网站使用 GitHub Pages 托管，托管方会因安全目的记录访客 IP。支持邮件与计划首发 App 的数据范围、保留和删除方式，请阅读完整说明。</p>
+        <p><a href="index.html">阅读隐私政策</a></p>
+      </section>
+    </article>
+  </div>
+  <footer class="site-footer"><p>zhanyi · 本网站公开不代表 App 已正式发布或完成发布验收。</p></footer>
+</main>
+</body>
+</html>
