@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="referrer" content="no-referrer">
+  <meta name="description" content="命令与服务器的网站、支持邮件及计划首发 App 的隐私与数据处理说明。">
+  <title>隐私政策｜命令与服务器</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip-link" href="#main">跳到正文</a>
+<header class="site-header">
+  <div class="header-inner">
+    <div class="brand"><span class="brand-mark" aria-hidden="true">&gt;_</span><span>命令与服务器</span></div>
+    <nav class="site-nav" aria-label="网站导航">
+      <a href="index.html" aria-current="page">隐私政策</a>
+      <a href="support.html">技术支持</a>
+    </nav>
+  </div>
+</header>
+<main class="page" id="main" tabindex="-1">
+  <p class="draft-label">隐私与数据 · 预发布说明</p>
+  <h1>隐私政策</h1>
+  <p class="intro">了解网站访问、支持邮件，以及计划首发 App 的本机资料、SSH 连接与用户主动分享时的数据处理方式。</p>
+  <div class="notice" role="note" aria-label="政策适用范围">
+    <p><strong>请先了解适用范围</strong></p>
+    <p>网站访问和支持邮件规则自本网页公开起适用。App 部分说明适用于计划中暂不提供 iCloud 同步的首个正式发布版，发布前还将与实际 App 及依赖核对；App 尚未正式发布。本页不替代既有开发、测试版本的数据说明，也不会改变其同步开关或删除已有本机、钥匙串及云端资料。</p>
+  </div>
+  <div class="document-layout">
+    <aside class="contents" aria-labelledby="contents-title">
+      <h2 id="contents-title">本页目录</h2>
+      <ul>
+        <li><a href="#identity">政策信息</a></li>
+        <li><a href="#purpose">应用与数据用途</a></li>
+        <li><a href="#local-data">设备上的资料</a></li>
+        <li><a href="#transfers">连接与主动传递</a></li>
+        <li><a href="#icloud">iCloud 首发计划</a></li>
+        <li><a href="#deletion">保留、管理与删除</a></li>
+        <li><a href="#website">网站访问与托管</a></li>
+        <li><a href="#email">支持邮件与请求</a></li>
+        <li><a href="#updates">说明更新</a></li>
+      </ul>
+    </aside>
+    <article class="document" aria-label="隐私政策正文">
+      <section aria-labelledby="identity">
+        <h2 id="identity">政策信息</h2>
+        <dl class="metadata">
+          <div><dt>版本日期</dt><dd>2026-10-18</dd></div>
+          <div><dt>网站与支持邮件规则</dt><dd>自本网页公开日起适用</dd></div>
+          <div><dt>App 数据处理说明</dt><dd>适用于计划中的首个正式发布版；不覆盖既有测试版</dd></div>
+          <div><dt>发布者</dt><dd>zhanyi（开发者公开名称）</dd></div>
+          <div><dt>公开支持邮箱</dt><dd><a class="contact-link" href="mailto:18809970825@163.com">18809970825@163.com</a></dd></div>
+          <div><dt>政策页面</dt><dd><a href="index.html">当前页面</a></dd></div>
+        </dl>
+      </section>
+      <section aria-labelledby="purpose">
+        <h2 id="purpose">一、应用与数据用途</h2>
+        <p>计划首发 App 用于离线查阅 Linux 命令、按场景浏览操作参考，以及连接用户有权管理的 SSH 服务器、查看状态和运行单次远程命令。下文 App 资料说明均在此预发布范围内理解。</p>
+        <p>计划首发不内置广告、行为分析或开发者遥测服务，不建立应用自有的登录账号和开发者后端；正式发布前将核对 App 及第三方依赖的实际行为。这不表示应用零网络或所有数据均不离开设备。</p>
+      </section>
+      <section aria-labelledby="local-data">
+        <h2 id="local-data">二、设备上的资料</h2>
+        <p>应用保存服务器名称、地址、端口、用户名、认证方式、主机信任资料、命令收藏和最近阅读、专题收藏和阅读位置、最近使用目标，以及命令历史和输出，用于相应功能。服务器状态和输出在使用过程中也会在内存中处理。</p>
+        <p>密码、私钥和私钥口令使用系统钥匙串保存；新建凭据采用设备解锁时可访问、仅限本设备的保护方式。应用未实现凭据的 iCloud 同步。系统备份与恢复适用系统自身规则；不承诺卸载 App 会清除全部钥匙串资料。</p>
+        <p>命令及输出可能含有口令、令牌、内部地址或个人信息。历史记录的自动脱敏和长度限制并不能识别全部秘密，请勿把它当成安全保证。</p>
+      </section>
+      <section aria-labelledby="transfers">
+        <h2 id="transfers">三、连接与用户主动传递的数据</h2>
+        <p>SSH：用户发起连接、刷新状态或执行命令时，应用连接用户指定的服务器，完成认证、发送命令并接收状态和输出。密码认证会向目标服务器提交认证信息；私钥认证使用密钥完成认证，不能把“凭据保存在本机”表述为所有认证信息永不离开设备。目标服务器及其管理员可能保留连接、认证及操作日志，请先取得授权并核对主机指纹。</p>
+        <p>文件：导入私钥只读取用户通过系统文件选择器明确选择的文件。文件可能来自本机或已启用的云端文件提供方；其数据处理适用相应服务规则。</p>
+        <p>复制与分享：用户选择的手册、命令或输出可能进入系统剪贴板或分享目标。请先检查内容，接收应用或服务的处理不由本应用控制。</p>
+        <p>外部参考：打开参考链接会访问对应网站，网站可能处理访问相关信息，并适用自己的隐私规则。</p>
+        <p>Siri／快捷指令：用户可按自己的配置使用已保存服务器、运行命令并返回结果或状态；名称和结果可能被后续快捷指令步骤处理。请核对流程和目标，避免传递敏感内容。</p>
+        <p>离线手册查阅本身不要求连接开发者服务器；上述主动操作仍可能联网。</p>
+      </section>
+      <section aria-labelledby="icloud">
+        <h2 id="icloud">四、首发暂不提供 iCloud 同步</h2>
+        <p>计划首发暂不提供应用内的 iCloud 收藏、阅读和服务器资料同步；实际发布构建还需落实并核对该范围。将来提供同步功能前，会先验证相应功能并更新数据处理说明，不把本说明视为开启同步的授权。</p>
+        <p>既有测试版本可能保留同步配置或已有云端资料，本页不替代这些版本原有的同步说明。暂缓首发功能不表示关闭过设备开关或删除了任何资料，也不会据此静默清空本机、钥匙串或云端副本。既有云资料仍须按原有说明及 Apple 的相应功能管理。系统备份、文件提供方和剪贴板等系统服务也不因此停用。</p>
+      </section>
+      <section aria-labelledby="deletion">
+        <h2 id="deletion">五、资料保留、管理与删除</h2>
+        <p>本机资料为对应功能保留。用户可以编辑或删除服务器、取消命令或专题收藏、清空命令最近阅读、清空专题阅读位置，或清空服务器命令历史；具体入口以正式发布界面为准。</p>
+        <p>删除服务器会移除相关本机资料和历史，并尝试清理对应钥匙串凭据；清理失败会提示。主机信任记录在没有其他相同端点资料使用时尝试清理，失败时提示。不承诺卸载应用会删除钥匙串、系统备份、已分享内容、远端服务器日志或云端文件提供方的副本。</p>
+        <p>本应用没有自建账号，因此没有应用账号注销流程。用户可停止连接、停止使用相应系统功能，并通过系统设置管理局域网等权限。对设备上的本机资料，支持邮箱无法代替用户远程删除。</p>
+      </section>
+      <section aria-labelledby="website">
+        <h2 id="website">六、网站访问与托管</h2>
+        <p>本网站为静态网页，不设置开发者自有的广告、访问统计脚本、反馈表单或登录系统，也不加载外部字体。点击邮箱链接会调用你自己的邮件应用，不会自动发送邮件。</p>
+        <p>网站使用 GitHub Pages 托管。GitHub 的官方说明指出，访问 Pages 网站时，访客 IP 地址会因安全目的被记录和保存，无论访客是否登录 GitHub。托管方的日志、处理方式和保留规则由其服务管理，不适用下文开发者支持邮件的 30 天期限。</p>
+        <p>你可以阅读 <a href="https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages#data-collection">GitHub Pages 的数据收集说明</a>和 <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub 隐私声明</a>。打开外部链接时，对方服务适用自己的规则。</p>
+      </section>
+      <section aria-labelledby="email">
+        <h2 id="email">七、支持邮件与隐私请求</h2>
+        <p>用户可自愿向 <a href="mailto:18809970825@163.com">18809970825@163.com</a> 发送问题或隐私请求；使用离线手册不要求发送邮件。收件内容可能包含发件地址、正文及用户自愿提供的附件，并由邮箱服务商处理。</p>
+        <p>邮件仅用于答复问题、处理反馈和隐私请求，不用于广告或营销。请勿发送密码、私钥、私钥口令、令牌、未脱敏的服务器配置或无授权的第三方资料。</p>
+        <p>支持邮件仅由发布者本人查看。问题处理结束后保留 30 天，期满由本人手动清理可控制的往来邮件、附件和副本，并按邮箱提供的功能清理已删除邮件；本网站不运行邮箱自动删除程序。法律另有保留要求时，仅按适用要求处理必要资料。邮箱服务商自行保留的日志、备份或其他不受开发者控制的副本，适用相应服务规则，无法保证与本人清理同时清除。</p>
+        <p>你也可以在 30 天期满前申请查询、更正或删除开发者收到的邮件资料。请尽量通过原发件邮箱，以“隐私请求”为主题，说明希望处理的内容；本人将核对原有通信和必要的关联信息后处理。无需提交密码、私钥或身份证件。无法合理核验请求与资料关系时，会继续沟通，不向请求人披露他人的资料。不承诺固定答复时限。</p>
+        <p>该渠道仅能处理开发者实际收到并可控制的资料，不能代替你远程删除设备本机数据、Apple 服务、其他应用、托管方日志或远端服务器的数据。</p>
+      </section>
+      <section aria-labelledby="updates">
+        <h2 id="updates">八、说明更新与联系</h2>
+        <p>数据处理方式发生变化时，将更新本页并注明版本日期。App 正式发布前会按实际发布构建核对相应说明；如有问题，请通过上方支持邮箱联系。</p>
+      </section>
+    </article>
+  </div>
+  <footer class="site-footer"><p>zhanyi · 本网站公开不代表 App 已正式发布或完成发布验收。</p></footer>
+</main>
+</body>
+</html>
