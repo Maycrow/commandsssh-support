@@ -5,7 +5,7 @@ let downloadURL;
 let epoch = 0; let activeRequest;
 export function clearReading(message) {
   if (downloadURL) { URL.revokeObjectURL(downloadURL); downloadURL = undefined; }
-  document.title = '共享笔记 · CommandsSSH';
+  document.title = '共享笔记 · 见习手记';
   $('note').hidden = true; $('body').replaceChildren(); $('title').textContent = '';
   $('credit').textContent = ''; $('tags').textContent = ''; $('author').textContent = '';
   $('download').removeAttribute('href'); $('open-app').removeAttribute('href');
