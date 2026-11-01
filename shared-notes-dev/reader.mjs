@@ -3,13 +3,14 @@ import {validateSnapshot, publicPayload, publicID, readerEndpoint} from './note-
 const $ = id => document.getElementById(id);
 let downloadURL;
 let epoch = 0; let activeRequest;
-export function clearReading(message) {
+export function clearReading(message, canRetry = false) {
   if (downloadURL) { URL.revokeObjectURL(downloadURL); downloadURL = undefined; }
   document.title = '共享笔记 · 见习手记';
   $('note').hidden = true; $('body').replaceChildren(); $('title').textContent = '';
   $('credit').textContent = ''; $('tags').textContent = ''; $('author').textContent = '';
   $('download').removeAttribute('href'); $('open-app').removeAttribute('href');
   $('status').textContent = message; $('status').hidden = false;
+  $('retry').hidden = !canRetry;
 }
 export async function renderSnapshot(value, id, isCurrent = () => true) {
   const note = await validateSnapshot(value);
@@ -25,7 +26,7 @@ export async function renderSnapshot(value, id, isCurrent = () => true) {
   downloadURL = URL.createObjectURL(blob);
   $('download').href = downloadURL; $('download').download = 'shared-note.csnote';
   $('open-app').href = 'commandsssh://shared-note/' + publicID(id);
-  $('status').hidden = true; $('note').hidden = false;
+  $('retry').hidden = true; $('status').hidden = true; $('note').hidden = false;
 }
 async function boundedJSON(response) {
   if (!response.ok || !response.body) throw Error('无法读取公开内容，请稍后重试。');
@@ -39,24 +40,42 @@ async function boundedJSON(response) {
   return JSON.parse(new TextDecoder('utf-8', {fatal: true}).decode(buffer));
 }
 export async function loadPublicNote() {
-  const request = ++epoch; activeRequest?.abort(); activeRequest = new AbortController();
-  const signal = activeRequest.signal;
+  const request = ++epoch; activeRequest?.abort();
+  const controller = new AbortController(); activeRequest = controller;
+  const signal = controller.signal;
+  let timedOut = false; let canRetry = false;
+  const timeout = setTimeout(() => { timedOut = true; controller.abort(); }, 15000);
   clearReading('正在读取公开笔记…');
+  $('reading').setAttribute('aria-busy', 'true');
   try {
     const id = publicID(location.hash);
     const url = readerEndpoint(config, location.href);
+    canRetry = true;
     const response = await fetch(url, {signal, method: 'POST', headers: {'Content-Type': 'text/plain'}, credentials: 'omit', cache: 'no-store', referrerPolicy: 'no-referrer',
       body: JSON.stringify({records: [{recordName: 'note-' + id}]})});
     const result = await boundedJSON(response);
     if (!Array.isArray(result.records) || result.records.length !== 1) throw Error('未能确认公开状态，请检查链接或稍后重试。');
     if (epoch !== request) return;
     const record = result.records[0];
-    if (record.serverErrorCode && !['NOT_FOUND', 'UNKNOWN_ITEM'].includes(record.serverErrorCode)) throw Error('读取失败，暂时无法确认公开状态。');
+    if (!record || typeof record !== 'object') throw Error('未能确认公开状态，请稍后重试。');
+    if (record.serverErrorCode) {
+      if (!['NOT_FOUND', 'UNKNOWN_ITEM'].includes(record.serverErrorCode)) throw Error('读取失败，暂时无法确认公开状态。');
+      clearReading('此笔记未公开、已撤回，或链接已失效。', true); return;
+    }
+    if (record.recordName !== 'note-' + id) throw Error('返回内容与分享链接不一致，已停止展示。');
     const snapshot = publicPayload(record);
-    if (!snapshot) { clearReading('此笔记未公开、已撤回，或链接已失效。'); return; }
-    await renderSnapshot(snapshot, id, () => epoch === request);
-  } catch (error) { if (epoch === request) clearReading(error.message || '暂时无法读取。'); }
+    if (!snapshot) { clearReading('此笔记未公开、已撤回，或链接已失效。', true); return; }
+    await renderSnapshot(snapshot, id, () => epoch === request && !signal.aborted);
+    if (signal.aborted) throw Error('请求已停止。');
+  } catch (error) {
+    if (epoch === request) clearReading(timedOut ? '读取超时，请检查网络后重试。' : error instanceof TypeError ? '网络连接暂不可用，请检查网络后重试。' : error instanceof SyntaxError ? '返回内容格式有误，请稍后重试。' : error.message || '暂时无法读取。', canRetry);
+  } finally {
+    clearTimeout(timeout);
+    if (epoch === request) $('reading').setAttribute('aria-busy', 'false');
+  }
 }
+$('retry').addEventListener('click', loadPublicNote);
+$('refresh').addEventListener('click', loadPublicNote);
 if (document.documentElement.dataset.mode !== 'synthetic-preview') {
   loadPublicNote(); window.addEventListener('hashchange', loadPublicNote);
   // Recheck when returning; a withdrawn note must not remain visible from an earlier in-page view.
@@ -66,3 +85,4 @@ if (document.documentElement.dataset.mode !== 'synthetic-preview') {
   });
   window.addEventListener('pageshow', event => { if (event.persisted) loadPublicNote(); });
 }
+
