@@ -24,7 +24,7 @@ export async function renderSnapshot(value, id, isCurrent = () => true) {
   const blob = new Blob([JSON.stringify(note, null, 2)], {type: 'application/vnd.commandsssh.note+json'});
   if (downloadURL) URL.revokeObjectURL(downloadURL);
   downloadURL = URL.createObjectURL(blob);
-  $('download').href = downloadURL; $('download').download = 'shared-note.csnote';
+  $('download').href = downloadURL; $('download').download = 'shared-note-' + publicID(id) + '.csnote';
   $('open-app').href = 'commandsssh://shared-note/' + publicID(id);
   $('retry').hidden = true; $('status').hidden = true; $('note').hidden = false;
 }

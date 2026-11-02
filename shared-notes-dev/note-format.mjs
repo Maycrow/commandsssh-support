@@ -47,7 +47,7 @@ export function readerEndpoint(settings, pageURL) {
   const path = {development:'/commandsssh-support/shared-notes-dev/notes.html',production:'/commandsssh-support/shared-notes/notes.html'}[settings.environment];
   const page = new URL(pageURL);
   if (!path || page.protocol !== 'https:' || page.hostname !== 'maycrow.github.io' || page.port || page.username || page.password || page.pathname !== path || page.search ||
-      settings.container !== 'iCloud.com.maycrow.commandsssh' || typeof settings.apiToken !== 'string' || !settings.apiToken.trim() || settings.apiToken.length > 2048 || /[\u0000-\u001f\u007f]/.test(settings.apiToken)) {
+      settings.container !== 'iCloud.com.maycrow.commandsssh.publicnotes' || typeof settings.apiToken !== 'string' || !settings.apiToken.trim() || settings.apiToken.length > 2048 || /[\u0000-\u001f\u007f]/.test(settings.apiToken)) {
     throw Error('共享环境与阅读页配置不一致，已停止读取。');
   }
   return `https://api.apple-cloudkit.com/database/1/${settings.container}/${settings.environment}/public/records/lookup?ckAPIToken=${encodeURIComponent(settings.apiToken)}`;
